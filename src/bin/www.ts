@@ -1,4 +1,4 @@
-import {app} from '../App';
+import app from '../App';
 import dotenv from 'dotenv';
 
 dotenv.config({path: `${__dirname}/../../.env`});
