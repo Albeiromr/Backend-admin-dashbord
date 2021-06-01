@@ -1,7 +1,7 @@
 import express from 'express';
-import {saveNewProduct} from './controller';
+import {postProduct} from './controller';
 
 
 export const router = express.Router();
 
-router.get("/", saveNewProduct);
+router.post("/", postProduct);
