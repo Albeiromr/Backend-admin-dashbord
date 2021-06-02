@@ -7,9 +7,6 @@ export const connection = mysql.createConnection({
   database : 'ecommerce'
 });
 
-connection.query("SELECT price FROM ecommerce.products;", function (error, results, fields) {
-    if (error) throw error;
-    console.log( results[0].price + results[1].price);
-  });
+
 
   

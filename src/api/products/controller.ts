@@ -4,11 +4,10 @@ import { connection } from "../../database/database";
 import { MysqlError } from "mysql";
 
 export function postProduct(req: express.Request, res: express.Response) {
-    
   let productData: createProductInterface = req.body;
 
   connection.query(
-    `Insert INTO ecommerce.products(
+    `INSERT INTO ecommerce.products (
             sku,
             productType,
             productName,
@@ -35,31 +34,31 @@ export function postProduct(req: express.Request, res: express.Response) {
             interestForYou,
             productProfit)
           VALUES (
-            ${productData.sku},
-            ${productData.productType},
-            ${productData.productName},
-            ${productData.productDescription},
-            ${productData.productPrice},
-            ${productData.productOldPrice},
-            ${productData.productStock},
-            ${productData.productRate},
-            ${productData.reviewQuantity},
-            ${productData.soldQuantity},
-            ${productData.productViews},
-            ${productData.sizeOne},
-            ${productData.sizeTwo},
-            ${productData.sizeThree},
-            ${productData.sizeFour},
-            ${productData.sizeFive},
-            ${productData.productImage},
-            ${productData.productThumbnail},
-            ${productData.categoryOne},
-            ${productData.categoryTwo},
-            ${productData.categoryThree},
-            ${productData.categoryFour},
-            ${productData.categoryFive},
-            ${productData.interestForYou},
-            ${productData.productProfit},
+            '${productData.sku}',
+            '${productData.productType}',
+            '${productData.productName}',
+            '${productData.productDescription}',
+            '${productData.productPrice}',
+            '${productData.productOldPrice}',
+            '${productData.productStock}',
+            '${productData.productRate}',
+            '${productData.reviewQuantity}',
+            '${productData.soldQuantity}',
+            '${productData.productViews}',
+            '${productData.sizeOne}',
+            '${productData.sizeTwo}',
+            '${productData.sizeThree}',
+            '${productData.sizeFour}',
+            '${productData.sizeFive}',
+            '${productData.productImage}',
+            '${productData.productThumbnail}',
+            '${productData.categoryOne}',
+            '${productData.categoryTwo}',
+            '${productData.categoryThree}',
+            '${productData.categoryFour}',
+            '${productData.categoryFive}',
+            '${productData.interestForYou}',
+            '${productData.productProfit}'  
           )`,
     (error: MysqlError, results, fields) => {
       if (error) res.send(error);
