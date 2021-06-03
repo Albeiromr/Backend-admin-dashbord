@@ -66,3 +66,11 @@ export function postProduct(req: express.Request, res: express.Response) {
     }
   );
 }
+
+export function getProductFamily (req: express.Request, res: express.Response) {
+  connection.query(`SELECT * FROM ecommerce.products Where productType='${req.params.family}'`,
+  (error:MysqlError, results, fields) => {
+    if (error) res.send(error);
+    res.send(results);
+  });
+}
