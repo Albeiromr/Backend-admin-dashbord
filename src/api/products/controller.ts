@@ -3,7 +3,7 @@ import { createProductInterface } from "./types";
 import { connection } from "../../database/database";
 import { MysqlError } from "mysql";
 
-export function postProduct(req: express.Request, res: express.Response) {
+export function postNewProduct(req: express.Request, res: express.Response) {
   let productData: createProductInterface = req.body;
 
   connection.query(
@@ -69,6 +69,14 @@ export function postProduct(req: express.Request, res: express.Response) {
 
 export function getProductFamily (req: express.Request, res: express.Response) {
   connection.query(`SELECT * FROM ecommerce.products Where productType='${req.params.family}'`,
+  (error:MysqlError, results, fields) => {
+    if (error) res.send(error);
+    res.send(results);
+  });
+}
+
+export function getIndividualProduct (req: express.Request, res: express.Response) {
+  connection.query(`SELECT * FROM ecommerce.products Where sku='${req.params.sku}'`,
   (error:MysqlError, results, fields) => {
     if (error) res.send(error);
     res.send(results);
