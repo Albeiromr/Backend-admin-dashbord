@@ -126,3 +126,11 @@ export function deleteIndividualProduct (req: express.Request, res: express.Resp
     res.send(results);
   });
 }
+
+export function getTotalRecords (req: express.Request, res: express.Response) {
+  connection.query(`SELECT Count(*) from ecommerce.products where productType='${req.params.family}'`,
+  (error:MysqlError, results, fields) => {
+    if (error) res.send(error);
+    res.send(results);
+  });
+}
