@@ -65,7 +65,7 @@ export function postNewProduct(req: express.Request, res: express.Response) {
       res.send(results);
     }
   );
-}
+};
 
 export function putEditProduct (req: express.Request, res: express.Response) {
   let productData: createProductInterface = req.body;
@@ -101,18 +101,26 @@ export function putEditProduct (req: express.Request, res: express.Response) {
     res.send(results);
   });
 
-}
+};
 
 export function getProductFamily (req: express.Request, res: express.Response) {
-  connection.query(`SELECT * FROM ecommerce.products Where productType='${req.params.family}'`,
+  connection.query(`SELECT * FROM ecommerce.products Where productType='${req.params.family}' LIMIT 6 OFFSET ${req.params.offset}`,
   (error:MysqlError, results, fields) => {
     if (error) res.send(error);
     res.send(results);
   });
-}
+};
 
 export function getIndividualProduct (req: express.Request, res: express.Response) {
-  connection.query(`SELECT * FROM ecommerce.products Where sku='${req.params.sku}'`,
+  connection.query(`SELECT * FROM ecommerce.products WHERE sku='${req.params.sku}'`,
+  (error:MysqlError, results, fields) => {
+    if (error) res.send(error);
+    res.send(results);
+  });
+};
+
+export function deleteIndividualProduct (req: express.Request, res: express.Response) {
+  connection.query(`DELETE FROM ecommerce.products WHERE sku = '${req.params.sku}'`,
   (error:MysqlError, results, fields) => {
     if (error) res.send(error);
     res.send(results);
