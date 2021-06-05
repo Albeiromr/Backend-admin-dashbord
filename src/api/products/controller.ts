@@ -67,6 +67,42 @@ export function postNewProduct(req: express.Request, res: express.Response) {
   );
 }
 
+export function putEditProduct (req: express.Request, res: express.Response) {
+  let productData: createProductInterface = req.body;
+  connection.query(`UPDATE ecommerce.products SET
+            productType = '${productData.productType}',
+            productName = '${productData.productName}',
+            productDescription = '${productData.productDescription}',
+            productPrice = '${productData.productPrice}',
+            productOldPrice = '${productData.productOldPrice}',
+            productStock = '${productData.productStock}',
+            productRate = '${productData.productRate}',
+            reviewQuantity = '${productData.reviewQuantity}',
+            soldQuantity = '${productData.soldQuantity}',
+            productViews = '${productData.productViews}',
+            sizeOne = '${productData.sizeOne}',
+            sizeTwo = '${productData.sizeTwo}',
+            sizeThree = '${productData.sizeThree}',
+            sizeFour = '${productData.sizeFour}',
+            sizeFive = '${productData.sizeFive}',
+            productImage = '${productData.productImage}',
+            productThumbnail = '${productData.productThumbnail}',
+            categoryOne = '${productData.categoryOne}',
+            categoryTwo = '${productData.categoryTwo}',
+            categoryThree = '${productData.categoryThree}',
+            categoryFour = '${productData.categoryFour}',
+            categoryFive = '${productData.categoryFive}',
+            interestForYou = '${productData.interestForYou}',
+            productProfit = '${productData.productProfit}'
+          WHERE
+            (sku = '${productData.sku}')`,
+  (error:MysqlError, results, fields) => {
+    if (error) res.send(error);
+    res.send(results);
+  });
+
+}
+
 export function getProductFamily (req: express.Request, res: express.Response) {
   connection.query(`SELECT * FROM ecommerce.products Where productType='${req.params.family}'`,
   (error:MysqlError, results, fields) => {
